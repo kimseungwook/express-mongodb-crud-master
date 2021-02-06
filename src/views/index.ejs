@@ -1,0 +1,107 @@
+<% include partials/_header %>
+
+<div class="container">
+
+  <div class="row">
+    <!--FORM-->
+    <div class="col-md-14">
+      <div class="card">
+        <div class="card-body">
+          <form action="/add" method="post">
+            <div class="form-group">
+              <input class="form-control" type="text" name="memberid" placeholder="memberid">
+            </div>
+            <div class="form-group">
+              <input class="form-control" type="text" name="coursecode" placeholder="courseCode">
+            </div>
+            <div class="form-group">
+              <input class="form-control" type="text" name="lecturecode" placeholder="lectureCode">
+            </div>
+            <div class="form-group">
+              <input class="form-control" type="text" name="apos" placeholder="pos">
+            </div>
+            <div class="form-group">
+              <input class="form-control" type="text" name="tm" placeholder="tm">
+            </div>
+            <div class="form-group">
+              <input class="form-control" type="text" name="pos_type" placeholder="pos_type">
+            </div>
+            <div class="form-group">
+              <input class="form-control" type="text" name="rate" placeholder="rate">
+            </div>
+            <div class="form-group">
+              <input class="form-control" type="text" name="lecturetime" placeholder="lecturetime">
+            </div>
+            <div class="form-group">
+              <input class="form-control" type="text" name="viewtime" placeholder="lecturetime">
+            </div>
+            <div class="form-group">
+              <input class="form-control" type="text" name="ip" placeholder="ip">
+            </div>
+            <div class="form-group">
+              <input class="form-control" type="text" name="device" placeholder="device">
+            </div>
+            <button class="btn btn-primary" type="submit">
+              Add
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <!-- LIST -->
+    <div class="col-md-7">
+      <table class="table table-bordered table-hover">
+        <thead>
+          <tr>
+            <th>N°</th>
+            <th>memberid</th>
+            <th>coursecode</th>
+            <th>lecturecode</th>
+            <th>pos</th>
+            <th>tm</th>
+            <th>pos_type</th>
+            <th>배속</th>
+            <th>강의시간</th>
+            <th>본시간</th>
+            <th>IP</th>
+            <th>장비</th>
+            <th>입력날짜</th>
+            <th>Operations</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% for(var i=0; i < tasks.length; i++) { %>
+            <tr>
+              <td><%= i + 1%></td>
+              <td><%= tasks[i].memberid %></td>
+              <td><%= tasks[i].coursecode %></td>
+              <td><%= tasks[i].lecturecode %></td>
+              <td><strong><%= tasks[i].pos %></strong></td>
+              <td><%= tasks[i].tm %></td>
+              <td><%= tasks[i].pos_type %></td>
+              <td><%= tasks[i].rate %></td>
+              <td><%= tasks[i].lecturetime %></td>
+              <td><%= tasks[i].viewtime %></td>
+              <td><%= tasks[i].ip %></td>
+              <td><%= tasks[i].device %></td>
+              <td><%= tasks[i].viewdate %></td>
+              <td>
+                <a href="/delete/<%= tasks[i]._id %>"
+                  class="btn btn-danger">
+                  Delete
+                </a>
+                <a href="/edit/<%= tasks[i]._id %>" class="btn btn-info">
+                  Edit
+                </a>
+              </td>
+            </tr>
+          <% } %>
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+
+</div>
+

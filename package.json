@@ -1,0 +1,24 @@
+{
+  "name": "node-mongodb-crud",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "ejs": "^2.5.9",
+    "express": "^4.16.3",
+    "json-api-mongo-parser": "^0.3.1",
+    "mongoose": "^5.11.15",
+    "morgan": "^1.9.0",
+    "mssql": "^6.3.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.17.3"
+  },
+  "scripts": {
+    "dev": "nodemon ./src/app.js",
+    "start": "node ./src/app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
