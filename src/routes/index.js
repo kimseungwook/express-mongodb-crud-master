@@ -121,32 +121,39 @@ router.get('/add2/:ordercode/:memberid/:coursecode/:lecturecode/:apos/:tm/:pos_t
       .where('lecturecode').equals(lecturecode)
       .sort('-viewdate')
       .limit(1)
-      .select({tm:1,viewtime:1,_id:0})
+      .select({tm:1,viewtime:1,viewdate:1,_id:0})
 
   // let pvos = "";
-  let vpos = "0";
+  let ntm = "0";
   let lvt = "0";
+  let pvos = "";
   try {
     // let bpos = EJSON.parse(pos);
-    // console.log(ftask);
+     console.log(ftask);
     pvos = ftask.toString().replace('tm', '"tm"');
     pvos = pvos.toString().replace('viewtime', '"viewtime"');
+    pvos = pvos.toString().replace('viewdate', '"viewdate"');
     pvos  = pvos.replace(/'/g,"" );
 
-    // console.log(pvos);
+    console.log(pvos);
+    const aquaObj = JSON.parse(pvos);
+    // console.log('vpos='+aquaObj.count+ "\n");
 
-    const  tmObj = JSON.parse(pvos);
-    vpos = tm - tmObj.tm;
 
-    let sign = Math.sign(vpos)
-    if (sign== -1) {
-      vpos = 1
+    ntm = tm - aquaObj.tm;
+    let signTm = Math.sign(ntm)
+
+    if(signTm == -1){
+      lvt = aquaObj.viewtime + 10;
+    }else {
+      lvt = aquaObj.viewtime + ntm;
     }
+
+    console.log('lvt='+lvt+ "\n");
     // vpos = Math.abs(vpos);
-    lvt = tmObj.viewtime + vpos;
-    console.log('vpos='+vpos+ "\n");
+
   }catch(err){
-    vpos ='0'
+    lvt ='0'
   }
   // vpos = Math.abs(vpos);
 
