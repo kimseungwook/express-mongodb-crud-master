@@ -3,6 +3,9 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const express = require('express');
+const mparser = require('mongodb-query-parser');
+const EJSON = require('mongodb-extended-json');
+
 const router = express.Router(undefined);
 const Task = require('../model/task');
 // const { EJSON } = require('bson');
@@ -121,7 +124,7 @@ router.get('/add2/:ordercode/:memberid/:coursecode/:lecturecode/:apos/:tm/:pos_t
       .where('lecturecode').equals(lecturecode)
       .sort('-viewdate')
       .limit(1)
-      .select({tm:1,viewtime:1,viewdate:1,_id:0})
+      .select({tm:1,viewtime:1,viewdate:1,_id:1})
 
   // let pvos = "";
   let ntm = "0";
@@ -130,6 +133,10 @@ router.get('/add2/:ordercode/:memberid/:coursecode/:lecturecode/:apos/:tm/:pos_t
   try {
     // let bpos = EJSON.parse(pos);
      console.log(ftask);
+    const vvv = mparser.parseFilter((ftask.toString()));
+    const eJon = EJSON.stringify(vvv);
+    // const mongoParser = mparser.toJavascriptString(parse(query));
+    console.log(eJon);
     pvos = ftask.toString().replace('tm', '"tm"');
     pvos = pvos.toString().replace('viewtime', '"viewtime"');
     pvos = pvos.toString().replace('viewdate', '"viewdate"');
