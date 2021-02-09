@@ -89,10 +89,9 @@ router.get('/add2/:ordercode/:memberid/:coursecode/:lecturecode/:apos/:tm/:pos_t
 
   let Aqua;
   try{
-    Aqua = mongoose.model('aqua-' + coursecode);
+    Aqua = mongoose.model('aqua-' + memberid + '-' + ordercode + '-' + coursecode);
   }catch(e){
-    Aqua = mongoose.model('aqua-' + coursecode, new Schema({
-          ordercode: String,
+    Aqua = mongoose.model('aqua-' + memberid + '-' + ordercode + '-' + coursecode, new Schema({
           memberid: String,
           coursecode: String,
           lecturecode: String,
@@ -121,7 +120,7 @@ router.get('/add2/:ordercode/:memberid/:coursecode/:lecturecode/:apos/:tm/:pos_t
       .where('memberid').equals(memberid)
       .where('lecturecode').equals(lecturecode)
       .sort('-viewdate')
-      // .limit(1)
+      .limit(1)
       .select({tm:1,viewtime:1,viewdate:1,_id:0})
 
   // let pvos = "";
@@ -165,7 +164,6 @@ router.get('/add2/:ordercode/:memberid/:coursecode/:lecturecode/:apos/:tm/:pos_t
   // vpos = Math.abs(vpos);
 
   const doc = new Aqua({
-    ordercode: ordercode,
     memberid: memberid ,
     coursecode: coursecode,
     lecturecode: lecturecode,
