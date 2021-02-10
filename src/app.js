@@ -6,7 +6,7 @@ const mongoose = require('mongoose');
 const app = express();
 
 // connection to db
-mongoose.connect('mongodb://aqua:aquaplayergschool8125700@13.125.3.20:27017/admin',{useNewUrlParser:true,useUnifiedTopology: true })
+mongoose.connect('mongodb://aqua:aquaplayergschool8125700@13.125.3.20:27017/aqua',{useNewUrlParser:true,useUnifiedTopology: true })
     .then(db => console.log('db connected'))
     .catch(err => console.log(err));
 

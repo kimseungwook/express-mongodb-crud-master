@@ -89,7 +89,7 @@ router.get('/add2/:ordercode/:memberid/:coursecode/:lecturecode/:apos/:tm/:pos_t
 
   let Aqua;
   try{
-    Aqua = mongoose.model('aqua-' + coursecod);
+    Aqua = mongoose.model('aqua-' + coursecode);
   }catch(e){
     Aqua = mongoose.model('aqua-' + coursecode, new Schema({
           ordercode: String,
